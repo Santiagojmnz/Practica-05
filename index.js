@@ -1,29 +1,10 @@
 'use strict'
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const routes = require('./routes/localidad');
+var mongoose = require('mongoose');
+var app = require('./app');
+var dbRoute = 'mongodb://localhost:27017/dbEstados';
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/practica-05', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('DB conectada'))
+    .catch(error => console.log(error))
 
-
-//Habilitar Body-Parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-//Habilitar cors
-app.use(cors());
-
-app.use('/', routes());
-
-
-//Servicio y puerto de ejecucion
-app.listen(5000, function() {
-
-    console.log('servidor en ejecucion')
-});
+app.listen(process.env.PORT || 8080)

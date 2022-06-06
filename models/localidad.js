@@ -4,7 +4,8 @@ const {Schema, model} = require('mongoose');
 const localidadSchema = new Schema({
     name: {
         type: String,
-        require
+        require,
+        unique: true
     },
     CP: {
         type: String,
@@ -16,4 +17,4 @@ const localidadSchema = new Schema({
         require
     },
 });
-module.exports = model('Localidad', localidadSchema);
+module.exports = model('Localidades', localidadSchema);
