@@ -7,6 +7,7 @@ var cors = require('cors');
 var estado_routers = require('./routes/estado');
 var localidad_routers = require('./routes/localidad');
 var cliente_routers = require('./routes/cliente');
+var municipio_routers = require('./routes/municipio');
 //Servidor
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,6 +20,7 @@ app.options('*', cors());
 //Rutas base
 app.use('/api', estado_routers);
 app.use('/api', localidad_routers);
-app.use('/api', cliente_routers)
+app.use('/api', cliente_routers);
+app.use('/api', municipio_routers);
 
 module.exports = app;
